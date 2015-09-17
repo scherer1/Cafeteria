@@ -9,6 +9,9 @@ import bebida.Bebida;
 import bebida.Cafe;
 import decorator.Canela;
 import decorator.Chantily;
+import pagamento.Dinheiro;
+import pagamento.Pagamento;
+import pedido.Pedido;
 
 /**
  *
@@ -17,22 +20,19 @@ import decorator.Chantily;
 public class App {
     public static void main(String[] args) {
         Bebida cafe = new Cafe();
-        System.out.println("dados do cafe: ");
-        System.out.println("Nome: " + cafe.getNome());
-        System.out.println("Custo: " + cafe.custo());
-        
-        System.out.println("++ Adicionado um condimento ++");
         cafe = new Chantily(cafe);
-        System.out.println("NOvos dados do cafe: ");
-        System.out.println("Nome: " + cafe.getNome());
-        System.out.println("Custo: " + cafe.custo());
+        Pedido p = new Pedido();
+        Pagamento pagamento = new Dinheiro();
+        p.addItem(cafe);
         
-        System.out.println("++ Adicionado outro condimento ++");
-        cafe = new Canela(cafe);
-        System.out.println("NOvos dados do cafe: ");
-        System.out.println("Nome: " + cafe.getNome());
-        System.out.println("Custo: " + cafe.custo());
-        
-        
+        System.out.println("--> Fechando o pedido");
+        p.fecharPedido();
+        System.out.println("Valor toal do pedido: " + p.valorTotal());   
+        p.addItem(cafe);
+        System.out.println("Abrindo o pedido novamente:");
+        p.abrirPedido();
+        p.addItem(cafe);
+        p.fecharPedido();
+        p.pagar(pagamento);
     }
 }
