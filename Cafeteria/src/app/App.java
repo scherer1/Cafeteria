@@ -1,38 +1,64 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import bebida.Bebida;
 import bebida.Cafe;
-import decorator.Canela;
 import decorator.Chantily;
+import decoratorLanche.Bacon;
+import decoratorLanche.Calabresa;
+import lanche.Lanche;
+import lanche.Xcalabresa;
+import lanche.Xsalada;
+import pagamento.CartaoDeCredito;
 import pagamento.Dinheiro;
 import pagamento.Pagamento;
 import pedido.Pedido;
 
 /**
- *
- * @author UTFPR
+ 
  */
 public class App {
+
     public static void main(String[] args) {
         Bebida cafe = new Cafe();
-        cafe = new Chantily(cafe);
-        Pedido p = new Pedido();
+
+
+        /*Pedido pedido = new Pedido();
         Pagamento pagamento = new Dinheiro();
-        p.addItem(cafe);
-        
-        System.out.println("--> Fechando o pedido");
-        p.fecharPedido();
-        System.out.println("Valor toal do pedido: " + p.valorTotal());   
-        p.addItem(cafe);
-        System.out.println("Abrindo o pedido novamente:");
-        p.abrirPedido();
-        p.addItem(cafe);
-        p.fecharPedido();
-        p.pagar(pagamento);
+        pedido.addItem(cafe);
+
+        System.out.println("------- Fechando o Pedido!----------");
+        pedido.valorFinalPedido();
+        pedido.fecharPedido();
+        pedido.pagar(pagamento);
+        System.out.println("------- Fechado ----------------");
+
+        System.out.println("\n\n------- Abrindo o Pedido!----------");
+        pedido.abrirPedido();
+        cafe = new Chantilly(cafe);
+        pedido.addItem(cafe);
+        pedido.valorFinalPedido();
+        pedido.fecharPedido();
+        pagamento = new CartaoDeCredito();
+        pedido.pagar(pagamento);
+        System.out.println("------- Fechado!----------");*/
+
+        Lanche x = new Xsalada();
+        x.prepararLanche();
+        System.out.println("Nome: " + x.getNome() + " Custo: R$" + x.custo());
+        x = new Bacon(x);
+        System.out.println("Nome: "+x.getNome()+" Custo: R$"+x.custo());
+        System.out.println("------- Fechado!----------");
+        Lanche s = new Xcalabresa();
+        s.prepararLanche();
+        System.out.println("Nome: " + s.getNome() + " Custo: R$" + s.custo());
+        s = new Calabresa(s);
+        System.out.println("Nome: " + s.getNome() + " Custo: R$" + s.custo());
+
+
+
+
+
     }
+
+
 }

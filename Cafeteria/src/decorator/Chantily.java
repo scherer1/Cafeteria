@@ -13,7 +13,7 @@ import bebida.Bebida;
  */
 public class Chantily extends Decorator {
 
-    private Bebida b;
+    private final Bebida b;
 
     public Chantily(Bebida b) {
         this.b = b;
